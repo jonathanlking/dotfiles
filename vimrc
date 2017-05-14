@@ -2,7 +2,6 @@
 "  General Settings
 " ==================
 set nocompatible
-filetype off
 
 " Enable color syntaxing
 syntax on
@@ -64,6 +63,8 @@ set omnifunc=syntaxcomplete#Complete
 " ==================
 "  Plugins (Vundle)
 " ==================
+
+filetype off
 
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -138,7 +139,7 @@ Plugin 'eagletmt/neco-ghc'
 
 " TODO: Sort out binding conflicts
 " Idris mode for vim
-" Plugin 'idris-hackers/idris-vim'
+Plugin 'idris-hackers/idris-vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
