@@ -141,6 +141,9 @@ Plugin 'eagletmt/neco-ghc'
 " Idris mode for vim
 Plugin 'idris-hackers/idris-vim'
 
+" Purescript syntax colouring
+Plugin 'purescript-contrib/purescript-vim'
+
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
