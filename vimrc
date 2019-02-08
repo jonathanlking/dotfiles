@@ -23,9 +23,9 @@ set smarttab
 set smartindent
 set autoindent
 
-" Use 4 spaces to indent
-set softtabstop=4
-set shiftwidth=4
+" Use 2 spaces to indent
+set softtabstop=2
+set shiftwidth=2
 set expandtab
 
 " Incremental search
@@ -50,6 +50,7 @@ set completeopt+=longest
 set t_Co=256
 
 set cmdheight=1
+set noswapfile
 
 " Disable annoying beeping
 set noerrorbells
@@ -112,6 +113,14 @@ Plugin 'airblade/vim-gitgutter'
 
 " A Git wrapper so awesome, it should be illegal
 Plugin 'tpope/vim-fugitive'
+map <silent> <Leader>b :Gblame<CR>
+
+" Vim plugin for Haskell development powered by the lightning fast hdevtools
+" background server.
+Plugin 'bitc/vim-hdevtools'
+
+au FileType haskell nnoremap <buffer> <Leader>t :HdevtoolsType<CR>
+au FileType haskell nnoremap <buffer> <Leader>tt :HdevtoolsClear<CR>
 
 " Utility
 " -------
@@ -132,10 +141,10 @@ Plugin 'Shougo/neocomplete.vim'
 " ---------------
 
 " Happy Haskell programming on Vim
-Plugin 'eagletmt/ghcmod-vim'
-
-" A completion plugin for Haskell, using ghc-mod
-Plugin 'eagletmt/neco-ghc'
+" Plugin 'eagletmt/ghcmod-vim'
+"
+" " A completion plugin for Haskell, using ghc-mod
+" Plugin 'eagletmt/neco-ghc'
 
 " TODO: Sort out binding conflicts
 " Idris mode for vim
@@ -196,9 +205,15 @@ vmap a; :Tabularize /::<CR>
 vmap a- :Tabularize /-><CR>
 
 " ctrl-p
-map <silent> <Leader>t :CtrlP()<CR>
+map <silent> <Leader>p :CtrlP()<CR>
 noremap <leader>b<space> :CtrlPBuffer<cr>
 let g:ctrlp_custom_ignore = '\v[\/]dist$'
+nnoremap <leader>. :CtrlPTag<cr>
+
+let g:ctrlp_prompt_mappings = {
+    \ 'AcceptSelection("e")': ['<2-LeftMouse>'],
+    \ 'AcceptSelection("t")': ['<cr>'],
+    \ }
 
 " vim-nerdtree-tabs
 " Shortcut to toggle nerdtree
@@ -210,5 +225,27 @@ set laststatus=2
 
 " Solarized
 set background=dark
-" let g:solarized_termcolors=256
+let g:solarized_termcolors=256
 colorscheme solarized
+
+" https://stackoverflow.com/questions/356126/how-can-you-automatically-remove-trailing-whitespace-in-vim
+fun! <SID>StripTrailingWhitespaces()
+    let l = line(".")
+    let c = col(".")
+    %s/\s\+$//e
+    call cursor(l, c)
+endfun
+
+autocmd BufWritePre * :call <SID>StripTrailingWhitespaces()
+
+" https://vi.stackexchange.com/questions/12275/how-to-go-back-to-beginning-of-the-line-in-ex-command-mode
+cnoremap <C-a> <C-b>
+
+" Liyang's conflict
+nmap <Leader>c /^[<\|=>]\{7\}\%( .*\)\?$<cr>
+
+" Sort Haskell+PureScript imports
+nmap <Leader>i  vip:sort i /^import \+\%(qualified \+\)\?\\|^{-# *LANGUAGE \+/<cr>
+
+" Search for current visual selection
+vnoremap // y/<C-R>"<CR>
