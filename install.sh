@@ -6,18 +6,20 @@ mkdir -p ~/.vim/bundle
 mkdir -p ~/.vim/bundle
 mkdir -p ~/.vim/syntax
 mkdir -p ~/.vim/snippets
+mkdir -p ~/.stack
 
 mkdir -p ~/.tmux
 mkdir -p ~/.tmux/plugins
 
 # Symlink files
 ln -sfv ~/dotfiles/vimrc ~/.vimrc
+ln -sfv ~/dotfiles/tmux.conf ~/.tmux.conf
+
 ln -sfv ~/dotfiles/haskell/haskell.snippet ~/.vim/snippets/haskell.snippet
 ln -sfv ~/dotfiles/haskell/syntax/haskell.vim ~/.vim/syntax/haskell.vim
 ln -sfv ~/dotfiles/haskell/syntax/cabal.vim ~/.vim/syntax/cabal.vim
 ln -sfv ~/dotfiles/haskell/syntax/cabal.vim ~/.vim/syntax/cabal.vim
-
-ln -sfv ~/dotfiles/tmux.conf ~/.tmux.conf
+ln -sfv ~/dotfiles/stack-config.yaml ~/.stack/config.yaml
 
 ln -sfv ~/dotfiles/git/gitignore ~/.gitignore
 ln -sfv ~/dotfiles/git/gitconfig ~/.gitconfig
