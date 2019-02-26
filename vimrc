@@ -249,3 +249,9 @@ nmap <Leader>i  vip:sort i /^import \+\%(qualified \+\)\?\\|^{-# *LANGUAGE \+/<c
 
 " Search for current visual selection
 vnoremap // y/<C-R>"<CR>
+
+" Resizing shortcuts (thanks Liyang!)
+nmap <silent> <C-j>     <C-w>j
+nmap <silent> <C-k>     <C-w>k
+nmap <silent> <Esc><C-j>        :resize -1<cr>
+nmap <silent> <Esc><C-k>        :resize +1<cr>

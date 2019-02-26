@@ -130,3 +130,6 @@
   helper = osxkeychain
 [commit]
   gpgsign = true
+
+[interactive]
+  singlekey = true
