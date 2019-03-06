@@ -71,8 +71,14 @@ filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
+" set the runtime path to include fzf
+set rtp+=~/.fzf
+
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
+
+" File explorer (fuzzer search)
+Plugin 'junegunn/fzf.vim'
 
 " Precision colorscheme for the vim text editor
 Plugin 'altercation/vim-colors-solarized'
@@ -255,3 +261,8 @@ nmap <silent> <C-j>     <C-w>j
 nmap <silent> <C-k>     <C-w>k
 nmap <silent> <Esc><C-j>        :resize -1<cr>
 nmap <silent> <Esc><C-k>        :resize +1<cr>
+
+" fzf settings (thanks Alex!)
+let g:fzf_layout = { 'down': '~15%' }
+map <C-p> :Files<CR>
+nnoremap <leader>b :Buffers<CR>

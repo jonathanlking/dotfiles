@@ -27,6 +27,10 @@ ln -sfv ~/dotfiles/git/gitconfig ~/.gitconfig
 # Install Vundle (Vim plugin manager)
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 
+# Install fzf (file explorer)
+git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+~/.fzf/install
+
 # Install plugins
 # vim silent +PluginInstall +qall
 echo "Installing Vundle plugins (this may take a while)..."
