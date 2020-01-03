@@ -128,6 +128,10 @@ Plugin 'bitc/vim-hdevtools'
 au FileType haskell nnoremap <buffer> <Leader>t :HdevtoolsType<CR>
 au FileType haskell nnoremap <buffer> <Leader>tt :HdevtoolsClear<CR>
 
+" Vim LSP
+Plugin 'prabirshrestha/async.vim'
+Plugin 'prabirshrestha/vim-lsp'
+
 " Utility
 " -------
 
@@ -158,6 +162,9 @@ Plugin 'idris-hackers/idris-vim'
 
 " Purescript syntax colouring
 Plugin 'purescript-contrib/purescript-vim'
+
+" Haskell code formatter
+Plugin 'sdiehl/vim-ormolu'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -262,7 +269,27 @@ nmap <silent> <C-k>     <C-w>k
 nmap <silent> <Esc><C-j>        :resize -1<cr>
 nmap <silent> <Esc><C-k>        :resize +1<cr>
 
+" Ormolu options
+let g:ormolu_options=["-o -XTypeApplications", "-o -XInstanceSigs", "-o -XBangPatterns", "-o -XPatternSynonyms", "-o -XUnicodeSyntax", "-o -XDerivingVia"]
+nnoremap to :call ToggleOrmolu()<CR>
+
+" Update tags locations
+set tags+=$MONOREPO/tags;
+
 " fzf settings (thanks Alex!)
 let g:fzf_layout = { 'down': '~15%' }
 map <C-p> :Files<CR>
 nnoremap <leader>b :Buffers<CR>
+
+vnoremap <C-c> :w !xclip -i -sel c<CR><CR>
+
+let g:ctrlp_user_command = {
+  \ 'types': {
+    \ 1: ['.git', 'cd %s && git ls-files'],
+    \ },
+  \ 'fallback': 'find %s -type f'
+  \ }
+set smartcase
+
+command -nargs=+ Ggr execute 'silent Ggrep!' <q-args> | cw | redraw!
+nnoremap <C-F> :Ggr <cword><CR>
